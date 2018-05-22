@@ -88,13 +88,22 @@ class Inventory {
         );
     }
 
+    //  * ITEM RETRIEVAL FROM INVENTORY OBJECTS
     // Retrieves all items from DB in associative array
     public function get_all_items(){
         return $this->inventory_crud->get_all_items();
     }
-    // Retrieves all item from DB based on it's id #
+    // Retrieves item from DB based on it's id #
     public function get_item_by_id($item_id){
         return $this->inventory_crud->get_item_by_id($item_id);
+    }
+    // Based on single column value
+    public function get_items_by_column_value($col_name, $col_value){
+        return $this->inventory_crud->get_items_by_column_value($col_name, $col_value);
+    }
+    // Takes string to put in WHERE query
+    public function get_items_by_where($where_condition){
+        return $this->inventory_crud->get_items_by_where($where_condition);
     }
 
     // Renders inventory or editing page depending on $_GET value
