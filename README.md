@@ -29,15 +29,16 @@ Just don't charge money for a plugin built on this framework; that would be bein
 5. (Repeat as needed for different inventory types)
 6. Activate plugin from admin dash
 
-## What to do then
+## Getting the inventory
 * The `$inventory` global stores all the inventory objects under their `'singular_name'` key.  
-* All query functions return as an associative array.  
+* All query functions with multiple items return as an array.  
 For instance, if I wanted to interact with the 'beer' inventory:
 ```php
 <?php 
 // Let's pretend I'm in a theme file right now
 global $inventory;
 $beer_inventory = $inventory['beer'];
+// or $beer_inventory->get_obj('beer');
 $all_beers = $beer_inventory->get_all_items();
 // OR
 $a_beer = $beer_inventory->get_item_by_id(3);

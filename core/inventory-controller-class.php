@@ -1,7 +1,14 @@
 <?php
-    class InventoryController {
+    class InventoryController implements ArrayAccess {
         // Holds objects created with new Inventory()
         private $custom_inventory_objects = [];
+        // This function is for getting inventory objects array style
+        public function offsetGet($singular_name){
+            return $this->custom_inventory_objects[$singular_name];
+        }
+        public function get_obj($singular_name){
+            return $this->custom_inventory_objects[$singular_name];
+        }
 
         public function add_inventory_object($inventory_object){
             // If nothing in objects array yet, initialize it
@@ -56,4 +63,9 @@
             }
         }
     }
+
+    // The only array functionality right now is for getting inventory objects
+    public function offsetExists($offset){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
+    public function offsetSet ( $offset, $value ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
+    public function offsetUnset ( $offset ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
 ?>
