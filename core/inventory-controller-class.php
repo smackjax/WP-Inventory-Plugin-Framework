@@ -62,10 +62,9 @@
                 }  
             }
         }
+        // The only array functionality right now is for getting inventory objects
+        public function offsetExists($offset){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
+        public function offsetSet ( $offset, $value ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
+        public function offsetUnset ( $offset ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
     }
-
-    // The only array functionality right now is for getting inventory objects
-    public function offsetExists($offset){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
-    public function offsetSet ( $offset, $value ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
-    public function offsetUnset ( $offset ){ throw Error('InventoryController array behaviour only supports retrieving objects.'); }
 ?>
