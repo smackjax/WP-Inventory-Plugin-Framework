@@ -376,7 +376,6 @@ class InventoryCRUD {
     public function get_item_by_id($item_id){
         global $wpdb;
         $table_name = $this->db_table_name;
-        $item_id = (int)$_GET[Inventory::$ids_key];
         // Get item
         $query = "SELECT * FROM $table_name WHERE id=$item_id";
         $query_results = $wpdb->get_results(
@@ -389,8 +388,12 @@ class InventoryCRUD {
     public function get_items_by_column_value($col_name, $col_value){
         global $wpdb;
         $table_name = $this->db_table_name;
+        $parse_format = $this->get_parse_format($col_name);
+        $query_val = $this->parse_new_value($parse_format, $col_value);
+        // Adds quotes around strings for SQL comparison
+        if($parse_format === '%s') { $query_val = "'$query_val'"; }
         return $wpdb->get_results(
-            "SELECT * FROM $table_name WHERE $col_name=$col_value",
+            "SELECT * FROM $table_name WHERE $col_name=$query_val",
             'ARRAY_A'
         );
     }
