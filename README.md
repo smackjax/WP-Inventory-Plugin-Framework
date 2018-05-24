@@ -21,12 +21,12 @@ Just don't charge money for a plugin built on this framework; that would be bein
 
 
 ## How to use
-1. Rename plugin folder and entry file, if you want
+1. Rename plugin folder and entry file(if you want)
 2. Change the plugin meta info in the comment at the top of your main plugin entry file
-3. Duplicate the  file in `/custom-inventory/_template.php`
-4. Customize values in file
-    * Require the new file in `/custom-inventory/_index.php`
-5. (Repeat as needed for different inventory types)
+3. Duplicate and rename the inventory template file from `/custom-inventory/_template.php`
+4. Customize array values in new inventory file
+5. Require the new inventory file in `/custom-inventory/_index.php`
+    * (Repeat 3-5 as needed for different inventory types)
 6. Activate plugin from admin dash
 
 ## Getting the inventory
@@ -38,13 +38,14 @@ For instance, if I wanted to interact with the 'beer' inventory:
 // Let's pretend I'm in a theme file right now
 global $inventory;
 $beer_inventory = $inventory['beer'];
-// or $beer_inventory->get_obj('beer');
+// OR $beer_inventory = $inventory->get_obj('beer');
+// All beers
 $all_beers = $beer_inventory->get_all_items();
-// OR
+// One beer by it's id
 $a_beer = $beer_inventory->get_item_by_id(3);
-// OR
+// All 'light' beers
 $light_beers = $beer_inventory->get_items_by_column_value('beer_color', 'light');
-// OR
+// All beers that match a custom 'WHERE' SQL condition
 $expensive_beers = $beer_inventory->get_items_by_where("beer_price>30");
 ?>
 ```
